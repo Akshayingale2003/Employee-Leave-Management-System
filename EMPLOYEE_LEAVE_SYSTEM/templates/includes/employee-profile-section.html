@@ -1,0 +1,10 @@
+{% load  static %}
+<div class="user-profile pull-right">
+         <img class="avatar user-thumb" src="{% static 'images/avatar.jpg' %}" alt="avatar">
+        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{user.username}} <i class="fa fa-angle-down"></i></h4>
+         <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'my-profile' %}">View Profile</a>
+            <a class="dropdown-item" href="{% url 'change-password-employee' %}">Password</a>
+            <a class="dropdown-item" href="{% url 'logoutEmp' %}">Log Out</a>
+     </div>
+</div>
