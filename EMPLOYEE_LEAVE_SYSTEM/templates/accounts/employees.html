@@ -177,6 +177,35 @@
                                     
                                     </table>
                                 </div>
+
+                            <nav aria-label="Page navigation example">
+                              <ul class="pagination">
+                            {% if emps.has_previous %}
+                                <li class="page-item">
+                                  <a class="page-link" href="?page={{ emps.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                  </a>
+                                </li>
+                             {% endif %}
+                             {% if emps.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{emps.previous_page_number}}">{{emps.previous_page_number}}</a></li>
+                                 {% endif %}
+                                 {% if emps %}
+                                <li class="page-item"><a class="page-link" href="?page={{emps.number}}">{{emps.number}}</a></li>
+                                {% endif %}
+                                {% if emps.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{emps.next_page_number}}">{{emps.next_page_number}}</a></li>
+                                {% endif %}
+                            {% if emps.has_next %}
+                                <li class="page-item">
+                                  <a class="page-link" href="?page={{ emps.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                  </a>
+                                </li>
+                            {% endif %}
+                              </ul>
+                              </nav>
+
                             </div>
                         </div>
                     </div>

@@ -12,6 +12,8 @@ from .forms import AdminLoginForm
 
 from actions.forms import AddDepartmentForm,AddLeaveTypeForm
 
+from django.core.paginator import Paginator
+
 @login_required(login_url='accounts/index')
 def dashboard(request):
     employee = Employees.objects.all()
@@ -61,8 +63,11 @@ def logoutPage(request):
 
 def employees(request):
     emps = Employees.objects.filter(is_superuser = False)
+    paginator = Paginator(emps , 3)
+    page_num = request.GET.get('page')
+    data = paginator.get_page(page_num)
     context = {
-        'emps' : emps
+        'emps' : data
     }
     return render(request,'accounts/employees.html',context)
 
