@@ -19,7 +19,7 @@ def dashboard(request):
     employee = Employees.objects.all()
     department = Department.objects.all()
     leavetype = LeaveType.objects.all()
-    leaves = Leave.objects.all()
+    leaves = Leave.objects.all().order_by('Postingdate').reverse()
     
     context ={
              'employee' : employee,
