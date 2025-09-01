@@ -19,7 +19,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('dashboard', views.dashboard, name='dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
     path('accounts/index', views.admin_index, name='accounts/index'),
     path('logoutPage',views.logoutPage,name='logoutPage'),
     path('employees/',views.employees,name='employees'),
@@ -29,6 +29,6 @@ urlpatterns = [
     path('approved-history',views.approved_history,name='approved-history'),
     path('declined-history',views.declined_history,name='declined-history'),
     path('pending-history',views.pending_history,name='pending-history'),
-    path('department',views.department,name='department'),
+    path('department/',views.department,name='department'),
     path('useradmin',views.useradmin,name='useradmin'),
 ]

@@ -20,12 +20,15 @@ def dashboard(request):
     department = Department.objects.all()
     leavetype = LeaveType.objects.all()
     leaves = Leave.objects.all().order_by('Postingdate').reverse()
+    paginator = Paginator(leaves,4)
+    page_num = request.GET.get('page')
+    data = paginator.get_page(page_num)
     
     context ={
              'employee' : employee,
              'department' : department,
              'leavetype' : leavetype,
-             'leaves'  : leaves,
+             'leaves'  : data,
     }
     return render(request,'accounts/dashboard.html',context)
 
