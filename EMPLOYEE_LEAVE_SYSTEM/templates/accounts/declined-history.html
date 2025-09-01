@@ -139,7 +139,7 @@
                                                 <tbody>
 
                                                     {% for i in leaves %} 
-                                                    {% if i.Status == "Declined" %}
+                                                   
                                                               <tr>
                                                                   <td> <b>{{forloop.counter}}</b></td>
                                                                   <td>{{i.user.id}}</td>
@@ -156,7 +156,6 @@
                                                                   <td>
                                                                       <a href="{% url 'employeeLeave-details' i.leaveID %}" class="btn btn-secondary btn-sm">View Details</a></td>
                                                           </tr>
-                                                      {% endif %}
                                                       {% endfor %}
                                     </tbody>
                                                 </table>

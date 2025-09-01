@@ -130,7 +130,7 @@ def approved_history(request):
     employee = Employees.objects.all()
     department = Department.objects.all()
     leavetype = LeaveType.objects.all()
-    leaves = Leave.objects.all()
+    leaves = Leave.objects.filter(Status = 'Approved')
       
     context ={
              'employee' : employee,
@@ -144,7 +144,7 @@ def declined_history(request):
     employee = Employees.objects.all()
     department = Department.objects.all()
     leavetype = LeaveType.objects.all()
-    leaves = Leave.objects.all()
+    leaves = Leave.objects.filter(Status = 'Declined')
       
     context ={
              'employee' : employee,
@@ -158,7 +158,7 @@ def pending_history(request):
     employee = Employees.objects.all()
     department = Department.objects.all()
     leavetype = LeaveType.objects.all()
-    leaves = Leave.objects.all()
+    leaves = Leave.objects.filter(Status = 'Pending')
       
     context ={
              'employee' : employee,

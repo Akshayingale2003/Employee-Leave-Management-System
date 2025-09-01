@@ -126,27 +126,27 @@
 
                                                 <tbody>
 
-                                                    {% for i in leaves %} 
-                                                    {% if i.Status == "Pending" %}
+                                                    {% for leave in leaves %} 
+                                                  
                                                               <tr>
                                                                   <td> <b>{{forloop.counter}}</b></td>
-                                                                  <td>{{i.user.id}}</td>
-                                                                  <td>{{i.user.first_name}}&nbsp;&nbsp;{{i.user.last_name}}</td>
-                                                                  <td>{{i.LeaveType}}</td>
-                                                                  <td>{{i.Postingdate}}</td>
+                                                                  <td>{{leave.user.id}}</td>
+                                                                  <td>{{leave.user.first_name}}&nbsp;&nbsp;{{leave.user.last_name}}</td>
+                                                                  <td>{{leave.LeaveType}}</td>
+                                                                  <td>{{leave.Postingdate}}</td>
                                                                   <td>
-                                                                    {% if i.Status == "Approved" %}
+                                                                    {% if leave.Status == "Approved" %}
                                                                     <span style="color: green">Approved <i class="fa fa-thumbs-o-up"></i></span>
-                                                                    {% elif i.Status == "Declined" %}
+                                                                    {% elif leave.Status == "Declined" %}
                                                                      <span style="color: red">Declined <i class="fa fa-thumbs-o-down"></i></span>
                                                                     {% else %}
                                                                      <span style="color: blue">Pending <i class="fa fa-spinner"></i></span>
                                                                     {% endif %}
                                                                     </td>
                                                                   <td>
-                                                                      <a href="{% url 'employeeLeave-details' i.leaveID %}" class="btn btn-secondary btn-sm">View Details</a></td>
+                                                                      <a href="{% url 'employeeLeave-details' leave.leaveID %}" class="btn btn-secondary btn-sm">View Details</a></td>
                                                           </tr>
-                                                      {% endif %}
+                                                    
                                                       {% endfor %}
 
                                     </tbody>
