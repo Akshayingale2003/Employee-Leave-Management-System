@@ -187,15 +187,28 @@
                                   </a>
                                 </li>
                              {% endif %}
+                            
+                            {% if  emps.number == emps.paginator.num_pages %}
+                                <li class="page-item"><a class="page-link" href="?page={{emps.number|add:-2}}">{{emps.number|add:-2}}</a></li>
+                            {% endif %}
+                             
                              {% if emps.has_previous %}
                                 <li class="page-item"><a class="page-link" href="?page={{emps.previous_page_number}}">{{emps.previous_page_number}}</a></li>
                                  {% endif %}
                                  {% if emps %}
                                 <li class="page-item"><a class="page-link" href="?page={{emps.number}}">{{emps.number}}</a></li>
                                 {% endif %}
+                                
                                 {% if emps.has_next %}
+                                
                                 <li class="page-item"><a class="page-link" href="?page={{emps.next_page_number}}">{{emps.next_page_number}}</a></li>
                                 {% endif %}
+                            {% if emps.paginator.num_pages >= 3 %}
+                            {% if  emps.number == 1 %}
+                                <li class="page-item"><a class="page-link" href="?page={{emps.next_page_number|add:1}}">{{emps.next_page_number|add:1}}</a></li>
+                            {% endif %}
+                            {% endif %}    
+
                             {% if emps.has_next %}
                                 <li class="page-item">
                                   <a class="page-link" href="?page={{ emps.next_page_number }}" aria-label="Next">
