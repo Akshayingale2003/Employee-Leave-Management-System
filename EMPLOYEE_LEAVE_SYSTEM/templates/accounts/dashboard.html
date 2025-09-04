@@ -214,43 +214,9 @@
                                                 </table>
                                             </div>
 </div>
-<br>
-
-                        <nav aria-label="Page navigation example">
-                              <ul class="pagination">
-                            {% if leaves.has_previous %}
-                                <li class="page-item">
-                                  <a class="page-link" href="?page={{ leaves.previous_page_number }}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                  </a>
-                                </li>
-                             {% endif %}
-                              {% if  leaves.number == leaves.paginator.num_pages %}
-                                <li class="page-item"><a class="page-link" href="?page={{leaves.number|add:-2}}">{{leaves.number|add:-2}}</a></li>
-                            {% endif %}
-                             {% if leaves.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{leaves.previous_page_number}}">{{leaves.previous_page_number}}</a></li>
-                                 {% endif %}
-                                 {% if leaves %}
-                                <li class="page-item"><a class="page-link" href="?page={{leaves.number}}">{{leaves.number}}</a></li>
-                                {% endif %}
-                                {% if leaves.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{leaves.next_page_number}}">{{leaves.next_page_number}}</a></li>
-                                {% endif %}
-                           {% if leaves.paginator.num_pages >= 3 %}
-                            {% if  leaves.number == 1 %}
-                                <li class="page-item"><a class="page-link" href="?page={{leaves.next_page_number|add:1}}">{{leaves.next_page_number|add:1}}</a></li>
-                            {% endif %}
-                            {% endif %}  
-                            {% if leaves.has_next %}
-                                <li class="page-item">
-                                  <a class="page-link" href="?page={{ leaves.next_page_number }}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                  </a>
-                                </li>
-                            {% endif %}
-                              </ul>
-                              </nav>
+<br> 
+<a href="{% url 'leave-history' %}">view more leaves >></a>
+                       
 
                                         
                                 </div>

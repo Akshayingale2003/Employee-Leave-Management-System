@@ -20,10 +20,7 @@ def dashboard(request):
     department = Department.objects.all()
     leavetype = LeaveType.objects.all()
     leaves = Leave.objects.all().order_by('Postingdate').reverse()
-    paginator = Paginator(leaves,4)
-    page_num = request.GET.get('page')
-    data = paginator.get_page(page_num)
-    
+    data = leaves[:5]
     context ={
              'employee' : employee,
              'department' : department,
@@ -116,13 +113,16 @@ def leave_history(request):
     employee = Employees.objects.all()
     department = Department.objects.all()
     leavetype = LeaveType.objects.all()
-    leaves = Leave.objects.all()
+    leaves = Leave.objects.all().order_by('Postingdate').reverse()
+    paginator = Paginator(leaves,4)
+    page_num = request.GET.get('page')
+    data = paginator.get_page(page_num)
       
     context ={
              'employee' : employee,
              'department' : department,
              'leavetype' : leavetype,
-             'leaves'  : leaves
+             'leaves'  : data
     }
     return render(request,'accounts/leave-history.html',context)
 

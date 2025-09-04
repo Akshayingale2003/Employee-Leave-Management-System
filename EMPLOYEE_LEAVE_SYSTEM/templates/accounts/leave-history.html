@@ -136,31 +136,68 @@
                                                 </thead>
 
                                                 <tbody>
-                                                    {% for i in leaves %} 
+                                                    {% for leave in leaves %} 
                                                     
                                                               <tr>
                                                                   <td> <b>{{forloop.counter}}</b></td>
-                                                                  <td>{{i.user.id}}</td>
-                                                                  <td>{{i.user.first_name}}&nbsp;&nbsp;{{i.user.last_name}}</td>
-                                                                  <td>{{i.LeaveType}}</td>
-                                                                  <td>{{i.Postingdate}}</td>
+                                                                  <td>{{leave.user.id}}</td>
+                                                                  <td>{{leave.user.first_name}}&nbsp;&nbsp;{{leave.user.last_name}}</td>
+                                                                  <td>{{leave.LeaveType}}</td>
+                                                                  <td>{{leave.Postingdate}}</td>
                                                                   <td>
-                                                                    {% if i.Status == "Approved" %}
+                                                                    {% if leave.Status == "Approved" %}
                                                                     <span style="color: green">Approved <i class="fa fa-thumbs-o-up"></i></span>
-                                                                    {% elif i.Status == "Declined" %}
+                                                                    {% elif leave.Status == "Declined" %}
                                                                      <span style="color: red">Declined <i class="fa fa-thumbs-o-down"></i></span>
                                                                     {% else %}
                                                                      <span style="color: blue">Pending <i class="fa fa-spinner"></i></span>
                                                                     {% endif %}
                                                                     </td>
                                                                   <td>
-                                                                      <a href="{% url 'employeeLeave-details' i.leaveID %}" class="btn btn-secondary btn-sm">View Details</a></td>
+                                                                      <a href="{% url 'employeeLeave-details' leave.leaveID %}" class="btn btn-secondary btn-sm">View Details</a></td>
                                                           </tr>
                                                 
                                                       {% endfor %}
 
                                             </tbody>
                                                 </table>
+
+                             <nav aria-label="Page navigation example">
+                              <ul class="pagination">
+                            {% if leaves.has_previous %}
+                                <li class="page-item">
+                                  <a class="page-link" href="?page={{ leaves.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                  </a>
+                                </li>
+                             {% endif %}
+                              {% if  leaves.number == leaves.paginator.num_pages %}
+                                <li class="page-item"><a class="page-link" href="?page={{leaves.number|add:-2}}">{{leaves.number|add:-2}}</a></li>
+                            {% endif %}
+                             {% if leaves.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{leaves.previous_page_number}}">{{leaves.previous_page_number}}</a></li>
+                                 {% endif %}
+                                 {% if leaves %}
+                                <li class="page-item"><a class="page-link" href="?page={{leaves.number}}">{{leaves.number}}</a></li>
+                                {% endif %}
+                                {% if leaves.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{leaves.next_page_number}}">{{leaves.next_page_number}}</a></li>
+                                {% endif %}
+                           {% if leaves.paginator.num_pages >= 3 %}
+                            {% if  leaves.number == 1 %}
+                                <li class="page-item"><a class="page-link" href="?page={{leaves.next_page_number|add:1}}">{{leaves.next_page_number|add:1}}</a></li>
+                            {% endif %}
+                            {% endif %}  
+                            {% if leaves.has_next %}
+                                <li class="page-item">
+                                  <a class="page-link" href="?page={{ leaves.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                  </a>
+                                </li>
+                            {% endif %}
+                              </ul>
+                              </nav>
+
                                             </div>
                                         </div>
                                         </div>
