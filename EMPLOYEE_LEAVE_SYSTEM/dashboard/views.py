@@ -21,11 +21,19 @@ def dashboard(request):
     leavetype = LeaveType.objects.all()
     leaves = Leave.objects.all().order_by('Postingdate').reverse()
     data = leaves[:5]
+    approved_leaves = Leave.objects.filter(Status = 'Approved')
+    pending_leaves = Leave.objects.filter(Status = 'Pending')
+    declined_leaves = Leave.objects.filter(Status = 'Declined')
     context ={
              'employee' : employee,
              'department' : department,
              'leavetype' : leavetype,
-             'leaves'  : data,
+             'leaves'  : leaves,
+             'recent': data,
+             'approved': approved_leaves,
+             'declined': declined_leaves,
+             'pending': pending_leaves,
+
     }
     return render(request,'accounts/dashboard.html',context)
 

@@ -101,12 +101,12 @@
                                 <div class="s-report-inner pr--20 pt--30 mb-3">
                                     <div class="icon"><i class="fa fa-briefcase"></i></div>
                                     <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Available Leave Types</h4>
+                                        <h4 class="header-title mb-0">Total Leaves</h4>
                                         
                                     </div>
                                     <div class="d-flex justify-content-between pb-2">
-                                        <h1>{{leavetype.count}}</h1>
-                                        <span>Leave Types</span>
+                                        <h1>{{leaves.count}}</h1>
+                                        <span>Leaves</span>
                                     </div>
                                 </div>
                                 <!-- <canvas id="coin_sales1" height="100"></canvas> -->
@@ -145,10 +145,61 @@
                             </div>
                         </div>
                     </div>
+              
+<br>
+        
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="single-report mb-xs-30">
+                                <div class="s-report-inner pr--20 pt--30 mb-3">
+                                    <div class="icon"><i class="fa fa-spinner"></i></div>
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <h4 class="header-title mb-0">Pending leaves</h4>
+                                        
+                                    </div>
+                                    <div class="d-flex justify-content-between pb-2">
+                                        <h1>{{pending.count}}</h1>
+                                        <span>Leaves</span>
+                                    </div>
+                                </div>
+                                <!-- <canvas id="coin_sales1" height="100"></canvas> -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-report mb-xs-30">
+                                <div class="s-report-inner pr--20 pt--30 mb-3">
+                                    <div class="icon"><i class="fa fa-check-square-o"></i></div>
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <h4 class="header-title mb-0"> Approved leaves</h4>
+                                        
+                                    </div>
+                                    <div class="d-flex justify-content-between pb-2">
+                                        <h1>{{approved.count}}</h1>
+                                        <span>leaves</span>
+                                    </div>
+                                </div>
+                                <!-- <canvas id="coin_sales2" height="100"></canvas> -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-report">
+                                <div class="s-report-inner pr--20 pt--30 mb-3">
+                                    <div class="icon"><i class="fa fa-times"></i></div>
+                                    <div class="s-report-title d-flex justify-content-between">
+                                        <h4 class="header-title mb-0">Declined leaves</h4>
+                                        
+                                    </div>
+                                    <div class="d-flex justify-content-between pb-2">
+                                        <h1>{{declined.count}}</h1>
+                                        <span>leaves</span>
+                                    </div>
+                                </div>
+                                <!-- <canvas id="coin_sales3" height="100"></canvas> -->
+                            </div>
+                        </div>
+                    </div>
 
                     <br>
-
-                    
                 <!-- sales report area end -->
                 
                 <!-- row area start -->
@@ -167,11 +218,12 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Last 24 Hours</option>
-                                        
-                                    </select>
+                                   
                                 </div>
+
+
+
+
                                         <!-- <h4 class="header-title"></h4> -->
                                         <div class="single-table">
                                             <div class="table-responsive">
@@ -191,7 +243,7 @@
 
                                                 <tbody>
 
-                                       {% for i in leaves %}
+                                       {% for i in recent %}
                                         <tr>
                                             <td> <b>{{forloop.counter}}</b></td>
                                             <td>{{i.user.id}}</td>
@@ -213,12 +265,10 @@
                                             </tbody>
                                                 </table>
                                             </div>
-</div>
-<br> 
-<a href="{% url 'leave-history' %}">view more leaves >></a>
-                       
-
-                                        
+                                 </div>
+              <br> 
+              <a href="{% url 'leave-history' %}">view more leaves >></a>
+                                   
                                 </div>
                         </div>
                     </div>
