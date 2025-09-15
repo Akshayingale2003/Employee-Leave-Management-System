@@ -2,10 +2,11 @@ from django.shortcuts import render , redirect
 from dashboard.models import *
 from .forms import AddDepartmentForm, AddLeaveTypeForm, EmployeeCreation
 from django.contrib import messages
-# Create your views here.
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='/')
 def add_employee(request):
     form = EmployeeCreation()
     if request.method == "POST":
@@ -20,6 +21,9 @@ def add_employee(request):
     }
     return render(request,'accounts/add-employee.html',context)
 
+
+
+@login_required(login_url='/')
 def add_leavetype(request):
     form = AddLeaveTypeForm()
     if request.method == "POST" :
@@ -32,6 +36,9 @@ def add_leavetype(request):
       }
     return render(request,'accounts/add-leavetype.html',context)
 
+
+
+@login_required(login_url='/')
 def add_department(request):
     form = AddDepartmentForm()
     if request.method == 'POST':
@@ -48,6 +55,7 @@ def add_department(request):
 
 
 
+@login_required(login_url='/')
 def edit_leaveType(request,id):
     leavetype = LeaveType.objects.get(pk=id)
     if request.method == "POST":
@@ -62,6 +70,9 @@ def edit_leaveType(request,id):
 
 
 
+
+
+@login_required(login_url='/')
 def edit_department(request,id): 
     department = Department.objects.get(pk=id)
     if request.method == "POST":
@@ -77,6 +88,7 @@ def edit_department(request,id):
 
 
 
+@login_required(login_url='/')
 def delete_department(request,id):
      department = Department.objects.get(pk=id)
      department.delete()
@@ -84,6 +96,8 @@ def delete_department(request,id):
      return redirect('department')
 
 
+
+@login_required(login_url='/')
 def delete_leavetype(request,id):
      leaveType = LeaveType.objects.get(pk=id)
      leaveType.delete()
@@ -92,6 +106,7 @@ def delete_leavetype(request,id):
 
 
 
+@login_required(login_url='/')
 def update_employee(request,id):
     employee = Employees.objects.get(id=id)
     department = Department.objects.all()
@@ -116,6 +131,8 @@ def update_employee(request,id):
     return render(request,'accounts/update-employee.html',context)
 
 
+
+@login_required(login_url='/')
 def Activate(request,id):
     emp = Employees.objects.get(pk=id)
     emp.status = 'Active'
@@ -123,6 +140,9 @@ def Activate(request,id):
     messages.success(request,"Employee Activated Successfully....")
     return redirect('employees')
 
+
+
+@login_required(login_url='/')
 def Inactivate(request,id):
     emp = Employees.objects.get(pk=id)
     emp.status = 'Inactive'
@@ -130,6 +150,9 @@ def Inactivate(request,id):
     messages.success(request,"Employee Inactivated Successfully....")
     return redirect('employees')
 
+
+
+@login_required(login_url='/')
 def delete_Employee(request,id):
     emp = Employees.objects.get(pk=id)
     emp.delete()

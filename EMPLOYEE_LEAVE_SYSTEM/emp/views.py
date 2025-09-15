@@ -60,6 +60,7 @@ def logoutEmp(request):
     return redirect('index')
 
 
+@login_required(login_url='/')
 def my_profile(request):
      employee = Employees.objects.filter(username = request.user).first()
      if request.method == "POST":
@@ -79,6 +80,7 @@ def my_profile(request):
      }
      return render(request,'employees/my-profile.html',context)
 
+@login_required(login_url='/')
 def leave_history(request):
      employee = Employees.objects.filter(username = request.user).first()
      leave = Leave.objects.filter(user=employee).all()
@@ -87,6 +89,8 @@ def leave_history(request):
      }
      return render(request,'employees/my-leave-history.html',context)
 
+
+@login_required(login_url='/')
 def change_password_employee(request):
      if request.method == 'POST':
         current_password = request.POST.get('oldpassword')
